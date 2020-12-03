@@ -1,0 +1,37 @@
+{
+  "name": "iridium-telegram-bot",
+  "version": "1.0.0",
+  "description": "forward messages from to iridium and back",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lulukas/iridium-telegram-bot.git"
+  },
+  "keywords": [
+    "iridium",
+    "telegram"
+  ],
+  "author": "lukas klier",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lulukas/iridium-telegram-bot/issues"
+  },
+  "homepage": "https://github.com/lulukas/iridium-telegram-bot#readme",
+  "dependencies": {
+    "cron": "^1.8.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "https": "^1.0.0",
+    "imap": "^0.8.19",
+    "imap-simple": "^5.0.0",
+    "telegraf": "^3.38.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.9.0",
+    "webpack-cli": "^4.2.0"
+  }
+}
