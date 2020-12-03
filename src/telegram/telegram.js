@@ -10,7 +10,7 @@ module.exports = {
     
     var chatIds = [];
     
-    const tracker = new cron.CronJob("0,20,40 * * * * *", () => {
+    const tracker = new cron.CronJob("0 * * * * *", () => {
       // send scheduled message here
       console.log("track");
       getIridiumLocation(chatIds, telegram);

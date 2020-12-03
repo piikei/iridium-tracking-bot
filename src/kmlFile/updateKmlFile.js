@@ -44,13 +44,14 @@ module.exports = {
             const latitude = getLat(message.text);
             return (
               longitude &&
-              latitude && [
-                parseFloat(longitude),
-                parseFloat(latitude),
-              ]
+              latitude && [parseFloat(longitude), parseFloat(latitude)]
             );
           })
           .filter((coordinate) => !!coordinate);
+        console.log(
+          "🚀 ~ file: updateKmlFile.js ~ line 95 ~ s3.getObject ~ geoJSON.features[0].geometry",
+          geoJSON.features[0].geometry
+        );
 
         geoJSON.features[0].geometry = {
           ...geoJSON.features[0].geometry,
@@ -58,6 +59,10 @@ module.exports = {
             newCoordinates
           ),
         };
+        console.log(
+          "🚀 ~ file: updateKmlFile.js ~ line 95 ~ s3.getObject ~ geoJSON.features[0].geometry",
+          geoJSON.features[0].geometry
+        );
 
         // generate KML
         const kmlData = tokml(geoJSON);
