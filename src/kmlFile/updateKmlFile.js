@@ -81,7 +81,7 @@ module.exports = {
           Body: kmlData,
           ACL: "public-read",
           Expires: expireDate,
-          ContentType: "text/xml",
+          ContentType: "application/vnd.google-earth.kml+xml",
         };
 
         s3.upload(uploadParams, (err, data) => {
