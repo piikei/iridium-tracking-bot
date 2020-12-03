@@ -1,27 +1,29 @@
-const { Telegraf } = require("telegraf");
+const { Telegraf, Telegram } = require("telegraf");
 const { getIridiumLocation } = require("./getIridiumLocation");
 const cron = require("cron");
 
-const getTracker = (ctx) =>
-  new cron.CronJob("0,20,40 * * * * *", () => {
-    // send scheduled message here
-    console.log("track");
-    getIridiumLocation(ctx);
-  });
-
 module.exports = {
   startTelegramBot: () => {
-    var tracker;
+    
+    const telegram = new Telegram(process.env.TELEGRAM_TOKEN);
     const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
+    
+    var chatIds = [];
+    
+    const tracker = new cron.CronJob("0,20,40 * * * * *", () => {
+      // send scheduled message here
+      console.log("track");
+      getIridiumLocation(chatIds, telegram);
+    });
+
+    tracker.start();
 
     bot.start((ctx) => {
-      tracker = getTracker(ctx);
-      tracker.start();
+      chatIds.push(ctx.chat.id)
       return ctx.reply("Welcome to the Jollity tracker");
     });
 
     bot.command("startTracker", (ctx) => {
-      tracker = getTracker(ctx);
       tracker.start();
       return ctx.reply("Tracker started");
     });
