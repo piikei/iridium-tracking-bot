@@ -80,7 +80,7 @@ module.exports = {
           expireDate
         );
 
-        const uploadParams = {
+        const uploadKmlParams = {
           Bucket: "jollity-track",
           Key: "track.kml",
           Body: kmlData,
@@ -89,8 +89,24 @@ module.exports = {
           ContentType: "application/vnd.google-earth.kml+xml",
         };
 
-        s3.upload(uploadParams, (err, data) => {
-          if (err) reject(err);
+        s3.upload(uploadKmlParams, (err, data) => {
+          if (err) console.log(err);
+          else {
+            console.log("file uploadet to", data.Location);
+          }
+        });
+
+        const uploadGeoParams = {
+          Bucket: "jollity-track",
+          Key: "track.json",
+          Body: JSON.stringify(geoJSON, null, 2),
+          ACL: "public-read",
+          Expires: expireDate,
+          ContentType: "application/json",
+        };
+
+        s3.upload(uploadGeoParams, (err, data) => {
+          if (err) console.log(err);
           else {
             console.log("file uploadet to", data.Location);
           }
