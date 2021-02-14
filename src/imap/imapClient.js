@@ -1,4 +1,4 @@
-import Imap from "imap";
+const Imap = require("imap");
 
 var imap = new Imap({
   user: "syjollity@gmail.com",

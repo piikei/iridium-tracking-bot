@@ -15,19 +15,8 @@ export const getChatIds = () =>
         reject(err);
         return;
       } else {
-        console.log("your file", data);
-
         const JSONString = data.Body.toString();
-        console.log(
-          "🚀 ~ file: getChatIds.js ~ line 21 ~ s3.getObject ~ JSONString",
-          JSONString
-        );
         const chatIdsJSON = JSON.parse(JSONString);
-        console.log(
-          "🚀 ~ file: getChatIds.js ~ line 21 ~ s3.getObject ~ JSONString",
-          chatIdsJSON
-        );
-
         resolve(chatIdsJSON.chatIds);
       }
     });
