@@ -4,6 +4,7 @@
   "description": "forward messages from to iridium and back",
   "main": "app.js",
   "scripts": {
+    "start": "babel-node app.js",
     "test": "test"
   },
   "repository": {
@@ -35,6 +36,9 @@
     "xmldom": "^0.4.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/node": "^7.12.16",
+    "@babel/preset-env": "^7.12.16",
     "webpack": "^5.9.0",
     "webpack-cli": "^4.2.0"
   }
