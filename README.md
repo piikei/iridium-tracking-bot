@@ -1,1 +1,1 @@
-iridium-telegram-bot
+iridium-tracking-bot

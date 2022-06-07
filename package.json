@@ -4,7 +4,6 @@
   "description": "forward messages from to iridium and back",
   "main": "app.js",
   "scripts": {
-    "start": "babel-node app.js",
     "test": "test"
   },
   "repository": {

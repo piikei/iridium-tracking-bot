@@ -2,6 +2,7 @@ const togeojson = require("@mapbox/togeojson");
 const tokml = require("tokml");
 const DOMParser = require("xmldom").DOMParser;
 const S3 = require("aws-sdk/clients/s3");
+const NEXTCLOUD = require("nextcloud-node-client");
 
 const getLon = (string) => {
   const regex = /Lon([+-]+.[\S]+)/;
@@ -18,6 +19,10 @@ module.exports = {
   updateKmlFile: (messages) => {
     // get old track
     const s3 = new S3();
+    const nextcloud = new NEXTCLOUD();
+
+    const file = await client.getFile("/products/MyFile.txt");
+    const buffer = await file.getContent();
 
     const getParams = {
       Bucket: "jollity-track",
