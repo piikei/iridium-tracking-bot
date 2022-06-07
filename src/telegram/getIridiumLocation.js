@@ -4,6 +4,7 @@ const {
 const { Telegram } = require("telegraf");
 
 const { updateKmlFile } = require("../kmlFile/updateKmlFile.js");
+const { nextcloudKmlFile } = require("../kmlFile/nextcloudKmlFile.js");
 
 const getHTTP = (string) => {
   const regex = /http(.[\S]+)/;
@@ -24,6 +25,19 @@ const getLat = (string) => {
 };
 
 module.exports = {
+  updateIridiumLocation: () => {
+    console.log(
+      "🚀 ~ file: getIridiumLocation.js ~ line 29"
+    );
+    fetchIridiumMessages()
+      .then((messages) => {
+        // update Kml File
+        nextcloudKmlFile(messages);
+      })
+      .catch((err) => {
+        console.log("🚀 ~ file: getIridiumLocation.js ~ line 20 ~ err", err);
+      });
+  },
   getIridiumLocation: (chatIds, telegram) => {
     console.log(
       "🚀 ~ file: getIridiumLocation.js ~ line 28 ~ chatIds",

@@ -1,9 +1,9 @@
 const Imap = require("imap");
 
 var imap = new Imap({
-  user: "syjollity@gmail.com",
-  password: process.env.JOLLITY_GMAIL_PASSWORD,
-  host: "imap.gmail.com",
+  user: process.env.IMAP_USER,
+  password: process.env.IMAP_PW,
+  host: process.env.IMAP_SERVER,
   port: 993,
   tls: true,
   tlsOptions: {
