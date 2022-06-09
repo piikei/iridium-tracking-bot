@@ -1,7 +1,7 @@
 const togeojson = require("@mapbox/togeojson");
 const tokml = require("tokml");
 const DOMParser = require("xmldom").DOMParser;
-const S3 = require("aws-sdk/clients/s3");
+const {Storage} = require('@google-cloud/storage');
 
 const getLon = (string) => {
   const regex = /Lon([+-]+.[\S]+)/;
@@ -17,7 +17,7 @@ const getLat = (string) => {
 module.exports = {
   updateKmlFile: (messages) => {
     // get old track
-    const s3 = new S3();
+    const s3 = new Storage();
 
     const getParams = {
       Bucket: "jollity-track",

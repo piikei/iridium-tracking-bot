@@ -1,7 +1,8 @@
 const togeojson = require("@mapbox/togeojson");
+const { default: Client } = require("nextcloud-node-client");
 const tokml = require("tokml");
 const DOMParser = require("xmldom").DOMParser;
-const NEXTCLOUD = require("nextcloud-node-client");
+require("nextcloud-node-client");
 
 const getLon = (string) => {
   const regex = /Lon([+-]+.[\S]+)/;
@@ -14,22 +15,29 @@ const getLat = (string) => {
   return result && result[1];
 };
 
-module.exports = {
-  nextcloudKmlFile: (messages) => {
+async function nextcloudKmlFile(messages) {
+    // console.log("nextcloudKmlFile with: ", messages);
+
     // get old track
-    const nextcloud = new NEXTCLOUD();
+    const nextcloud = new Client();
 
     const foldername = "/Temp";
     const kmlFilename = "track.kml"
     const jsonFilename = "track.json"
 
     const folder = await nextcloud.getFolder(foldername)
+    console.log("folder getFiles", await folder.getFiles());
+    console.log("folder contains", await folder.containsFile(kmlFilename));
+    console.log("file", await nextcloud.getFile('/Temp/track.json'));
     const kmlfile = await folder.getFile(kmlFilename);
     const jsonfile = await folder.getFile(jsonFilename);
-    const data = await kmlfile.getContent();
+    console.log("kmlfile", kmlfile);
+    
+    const data = await kmlfile?.getContent() ?? "";
 
         console.log("your file", data);
         const oldKmlString = data.toString('utf-8');
+        console.log("your file to string", data.toString('utf-8'));
         const oldKmlDom = new DOMParser().parseFromString(
           oldKmlString,
           "text/xml"
@@ -39,14 +47,15 @@ module.exports = {
 
         const newCoordinates = messages
           .map((message) => {
-            const longitude = getLon(message.text);
-            const latitude = getLat(message.text);
+            const longitude = message.getLon();
+            const latitude = message.getLon();
             return (
               longitude &&
               latitude && [parseFloat(longitude), parseFloat(latitude)]
             );
           })
-          .filter((coordinate) => !!coordinate);
+          .filter((coordinate) => !!coordinate && coordinate[0] > -47.0 && coordinate[0] < 9.0
+          && coordinate[1] > 48.0 && coordinate[1] < 75.0);
         console.log(
           "🚀 ~ file: updateKmlFile.js ~ line 95 ~ s3.getObject ~ geoJSON.features[0].geometry",
           geoJSON.features[0].geometry
@@ -86,5 +95,6 @@ module.exports = {
         folder.createFile(jsonFilename,new Buffer(JSON.stringify(geoJSON, null, 2)));
 
     return;
-  },
-};
+}
+
+module.exports.nextcloudKmlFile = nextcloudKmlFile

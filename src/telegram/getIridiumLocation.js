@@ -32,7 +32,7 @@ module.exports = {
     fetchIridiumMessages()
       .then((messages) => {
         // update Kml File
-        nextcloudKmlFile(messages);
+        nextcloudKmlFile(messages.map((message) => {eMail(message)}));
       })
       .catch((err) => {
         console.log("🚀 ~ file: getIridiumLocation.js ~ line 20 ~ err", err);
