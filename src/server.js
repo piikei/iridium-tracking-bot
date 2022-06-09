@@ -9,16 +9,14 @@ module.exports = {
   serverStartup: async () => {
     console.log("App started2");
 
-    const tracker = new cron.CronJob("* * * * *", () => {
+    const tracker = new cron.CronJob("0 * * * *", () => {
       // send scheduled message here
       console.log("track");
       updateIridiumLocation();
     });
 
-    updateIridiumLocation();
-
     // nextcloudKmlFile("message");
-    // tracker.start();
+    tracker.start();
 
     // var chatIds = await getChatIds();
     // startTelegramBot({chatIds});

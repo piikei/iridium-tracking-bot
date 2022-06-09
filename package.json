@@ -1,26 +1,30 @@
 {
   "name": "iridium-tracking-bot",
   "version": "1.0.0",
-  "description": "forward messages from to iridium and back",
+  "description": "forward messages from iridium",
   "main": "app.js",
   "scripts": {
-    "start": "app.js",
+    "start": "node app.js",
     "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lulukas/iridium-telegram-bot.git"
+    "url": "git+https://github.com/piikei/iridium-tracking-bot.git"
   },
   "keywords": [
     "iridium",
     "telegram"
   ],
-  "author": "lukas klier",
+  "engines": {
+    "npm": ">=6.0.0",
+    "node": ">=10.0.0"
+  },
+  "author": "pascal keel, lukas klier",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lulukas/iridium-telegram-bot/issues"
+    "url": "https://github.com/piikei/iridium-tracking-bot/issues"
   },
-  "homepage": "https://github.com/lulukas/iridium-telegram-bot#readme",
+  "homepage": "https://github.com/piikei/iridium-tracking-bot#readme",
   "dependencies": {
     "@mapbox/togeojson": "^0.16.0",
     "aws-sdk": "^2.802.0",
