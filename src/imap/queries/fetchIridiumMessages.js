@@ -16,8 +16,7 @@ module.exports = {
           }
 
           imap.search(
-            //["UNSEEN", ["FROM", "881631452105@msg.iridium.com"]],
-            [["FROM", "881631452105@msg.iridium.com"]],
+            ["UNSEEN", ["FROM", "881631452105@msg.iridium.com"]],
             function (err, results) {
               if (err) {
                 console.log("search error: " + err);
