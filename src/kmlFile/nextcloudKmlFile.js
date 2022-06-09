@@ -3,8 +3,9 @@ const { default: Client } = require("nextcloud-node-client");
 const tokml = require("tokml");
 const DOMParser = require("xmldom").DOMParser;
 require("nextcloud-node-client");
+const { getLon, getLat, isValid, getSats } =require("../imap/emailparser.js")
 
-const getLon = (string) => {
+/* const getLon = (string) => {
   const regex = /Lon([+-]+.[\S]+)/;
   const result = string.match(regex);
   return result && result[1];
@@ -13,7 +14,7 @@ const getLat = (string) => {
   const regex = /Lat([+-]+.[\S]+)/;
   const result = string.match(regex);
   return result && result[1];
-};
+}; */
 
 async function nextcloudKmlFile(messages) {
     // console.log("nextcloudKmlFile with: ", messages);
@@ -46,20 +47,16 @@ async function nextcloudKmlFile(messages) {
         var geoJSON = togeojson.kml(oldKmlDom);
 
         const newCoordinates = messages
+          .filter((message) => isValid(message.text))
           .map((message) => {
-            const longitude = message.getLon();
-            const latitude = message.getLon();
-            return (
-              longitude &&
-              latitude && [parseFloat(longitude), parseFloat(latitude)]
-            );
-          })
-          .filter((coordinate) => !!coordinate && coordinate[0] > -47.0 && coordinate[0] < 9.0
-          && coordinate[1] > 48.0 && coordinate[1] < 75.0);
+              return ([getLon(message.text), getLat(message.text)])
+          });
         console.log(
           "🚀 ~ file: updateKmlFile.js ~ line 95 ~ s3.getObject ~ geoJSON.features[0].geometry",
           geoJSON.features[0].geometry
         );
+
+        // console.log("inValidMessages:", messages.filter((message) => !isValid(message.text)));
 
         geoJSON.features[0].geometry = {
           ...geoJSON.features[0].geometry,
