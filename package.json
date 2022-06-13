@@ -4,8 +4,7 @@
   "description": "forward messages from iridium",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "test"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +15,7 @@
     "telegram"
   ],
   "engines": {
-    "node": ">=14.0.0"
+    "node": "^14.0.0"
   },
   "author": "pascal keel, lukas klier",
   "license": "ISC",
