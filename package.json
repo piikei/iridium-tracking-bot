@@ -37,7 +37,7 @@
     "tokml": "^0.4.0",
     "xmldom": "^0.4.0",
     "nextcloud-node-client": "^1.8.1",
-    "@google-cloud/storage": "^6.0.1"
+    "@google-cloud/storage": "^6.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

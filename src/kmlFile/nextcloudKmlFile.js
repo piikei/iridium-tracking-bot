@@ -85,8 +85,10 @@ async function nextcloudKmlFile(messages) {
         expireDate
     );
 
-    await kmlfile.delete();
-    folder.createFile(kmlFilename, Buffer.from(kmlData));
+    data.write(kmlData);
+
+    // await kmlfile.delete();
+    // folder.createFile(kmlFilename, Buffer.from(kmlData));
 
     await jsonfile.delete();
     folder.createFile(jsonFilename, Buffer.from(JSON.stringify(geoJSON, null, 2)));
