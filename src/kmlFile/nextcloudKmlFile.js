@@ -3,7 +3,7 @@ const { default: Client } = require("nextcloud-node-client");
 const tokml = require("tokml");
 const DOMParser = require("xmldom").DOMParser;
 require("nextcloud-node-client");
-const { getLon, getLat, isValid, getSats } =require("../imap/emailparser.js")
+const { getLon, getLat, isValid } =require("../imap/emailparser.js")
 
 /* const getLon = (string) => {
   const regex = /Lon([+-]+.[\S]+)/;
@@ -56,7 +56,7 @@ async function nextcloudKmlFile(messages) {
           geoJSON.features[0].geometry
         );
 
-        // console.log("inValidMessages:", messages.filter((message) => !isValid(message.text)));
+        // cgitonsole.log("inValidMessages:", messages.filter((message) => !isValid(message.text)));
 
         geoJSON.features[0].geometry = {
           ...geoJSON.features[0].geometry,
@@ -86,10 +86,10 @@ async function nextcloudKmlFile(messages) {
         );
 
         await kmlfile.delete();
-        folder.createFile(kmlFilename, new Buffer(kmlData));
+        folder.createFile(kmlFilename, Buffer.from(kmlData));
 
         await jsonfile.delete();
-        folder.createFile(jsonFilename,new Buffer(JSON.stringify(geoJSON, null, 2)));
+        folder.createFile(jsonFilename, Buffer.from(JSON.stringify(geoJSON, null, 2)));
 
     return;
 }

@@ -1,7 +1,7 @@
 // const { startTelegramBot } = require("./telegram/telegram.js");
 // const { getChatIds } = require("./chatId/getChatIds.js");
 const { updateIridiumLocation } = require("./telegram/getIridiumLocation.js");
-const { nextcloudKmlFile } = require("./kmlFile/nextcloudKmlFile.js");
+// const { nextcloudKmlFile } = require("./kmlFile/nextcloudKmlFile.js");
 const cron = require("cron");
 
 

@@ -17,6 +17,12 @@ var getSats = exports.getSats = function(string) {
     return result;
 };
 
+var getHttp = exports.getHttp = function(string) {
+  const regex = /http(.[\S]+)/;
+  const result = string.match(regex);
+  return result && result[0];
+};
+
 exports.isValid = function(string) {
     const latitude = getLat(string);
     const longitude = getLon(string);

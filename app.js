@@ -4,7 +4,7 @@ const port = 8080;
 
 console.log("Starting APPPPPPPPP");
 
-require("dotenv").config({ path: __dirname + "/.env" });
+require("dotenv").config(); //{ path: __dirname + "/.env" });
 
 const { serverStartup } = require("./src/server.js");
 

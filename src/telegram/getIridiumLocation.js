@@ -5,24 +5,7 @@ const { Telegram } = require("telegraf");
 
 const { updateKmlFile } = require("../kmlFile/updateKmlFile.js");
 const { nextcloudKmlFile } = require("../kmlFile/nextcloudKmlFile.js");
-
-const getHTTP = (string) => {
-  const regex = /http(.[\S]+)/;
-  const result = string.match(regex);
-  return result && result[0];
-};
-
-const getLon = (string) => {
-  const regex = /Lon([+-]+.[\S]+)/;
-  const result = string.match(regex);
-  return result && result[1];
-};
-
-const getLat = (string) => {
-  const regex = /Lat([+-]+.[\S]+)/;
-  const result = string.match(regex);
-  return result && result[1];
-};
+const { getLon, getLat } =require("../imap/emailparser.js")
 
 module.exports = {
   updateIridiumLocation: () => {
