@@ -9,7 +9,7 @@ module.exports = {
   serverStartup: async () => {
     console.log("AppServer started");
 
-    const tracker = new cron.CronJob("0 * * * *", () => {
+    const tracker = new cron.CronJob("*/5 * * * *", () => {
       // send scheduled message here
       console.log("track");
       updateIridiumLocation();

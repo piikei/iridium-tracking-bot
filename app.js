@@ -14,6 +14,6 @@ app.get("/", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log("Starting Server");
+  console.log("Starting Server: ", process.env.IMAP_USER);
   serverStartup();
 });
