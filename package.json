@@ -9,12 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/piikei/iridium-tracking-bot.git"
+    "url": "https://github.com/piikei/iridium-tracking-bot.git"
   },
   "keywords": [
     "iridium",
     "telegram"
   ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "author": "pascal keel, lukas klier",
   "license": "ISC",
   "bugs": {

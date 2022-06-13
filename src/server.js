@@ -7,7 +7,7 @@ const cron = require("cron");
 
 module.exports = {
   serverStartup: async () => {
-    console.log("App started2");
+    console.log("AppServer started");
 
     const tracker = new cron.CronJob("0 * * * *", () => {
       // send scheduled message here
