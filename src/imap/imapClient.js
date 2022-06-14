@@ -10,6 +10,7 @@ var imap = new Imap({
     secureProcess: "TLS_method",
   },
   authTimeout: 3000,
+  connTimeout: 20000
 });
 
 module.exports = {

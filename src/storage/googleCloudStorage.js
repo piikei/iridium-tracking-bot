@@ -1,6 +1,6 @@
 const { Storage } = require('@google-cloud/storage');
 
-const bucket = "process.env.GOOGLE_BUCKET";
+const bucket = process.env.GOOGLE_BUCKET;
 // Creates a client
 const storage = new Storage();
 

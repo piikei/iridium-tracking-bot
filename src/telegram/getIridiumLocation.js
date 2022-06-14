@@ -19,7 +19,7 @@ async function processMessages(messages) {
   console.log("Got Calculated KML, next Upload Nextcloud:", calculatedData);
   await updateNextcloudFile(calculatedData);
   console.log("Upload Google");
-  await updateGoogleFile(calculatedData.kmlData, "track2022.kml");
+  await updateGoogleFile(calculatedData.kmlFile, "Track2022.kml");
   const currentPositionFile = await getGoogleFile("CurrentPosition.kml");
   const newCurrentPosFile = await replaceSinglePosition(currentPositionFile, calculatedData.currentPosition);
   await updateGoogleFile(newCurrentPosFile, "CurrentPosition.kml");

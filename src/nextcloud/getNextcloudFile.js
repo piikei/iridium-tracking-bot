@@ -16,9 +16,9 @@ const getLat = (string) => {
   return result && result[1];
 }; */
 
-const foldername = "/Temp";
-const kmlFilename = "track.kml"
-const jsonFilename = "track.json"
+const foldername = "/Medien/2022";
+const kmlFilename = "Track2022.kml"
+const jsonFilename = "Track2022.json"
 
 async function getKmlFile() {
     // console.log("nextcloudKmlFile with: ", messages);
