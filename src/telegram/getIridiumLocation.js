@@ -20,9 +20,18 @@ async function processMessages(messages) {
   await updateNextcloudFile(calculatedData);
   console.log("Upload Google");
   await updateGoogleFile(calculatedData.kmlFile, "Track2022.kml");
-  const currentPositionFile = await getGoogleFile("CurrentPosition.kml");
-  const newCurrentPosFile = await replaceSinglePosition(currentPositionFile, calculatedData.currentPosition);
-  await updateGoogleFile(newCurrentPosFile, "CurrentPosition.kml");
+  await updateGoogleFile(JSON.stringify(calculatedData.geoJson, null, 2), "Track2022.json");
+  console.log("Update Current Position");
+  const currentPositionFile = await getGoogleFile("CurrentPosition.json");
+  console.log("currentPositionFile:", currentPositionFile);
+  currentPosObject = JSON.parse(currentPositionFile);
+  console.log("currentPosObject:", currentPosObject.features[0].geometry);
+  currentPosObject.features[0].geometry.coordinates = calculatedData.currentPosition;
+  console.log("currentPosObject1:", currentPosObject.features[0].geometry);
+  await updateGoogleFile(JSON.stringify(currentPosObject, null, 2), "CurrentPosition.json");
+  // const currentPositionFile = await getGoogleFile("CurrentPosition.kml");
+  // const newCurrentPosFile = await replaceSinglePosition(currentPositionFile, calculatedData.currentPosition);
+  // await updateGoogleFile(newCurrentPosFile, "CurrentPosition.kml");
 }
 
 module.exports = {
